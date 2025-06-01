@@ -1,0 +1,14 @@
+# GitHub Issue Template Configuration
+# This file configures the behavior of the GitHub issue creation page
+# See: https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository
+
+# yaml-language-server: $schema=https://json.schemastore.org/github-issue-config.json
+
+blank_issues_enabled: false
+contact_links:
+  - name: VibeRMM Community Support
+    url: https://github.com/theonlytruebigmac/vibermm-frontend/discussions
+    about: Please ask and answer questions here.
+  - name: VibeRMM Security Bug
+    url: https://github.com/theonlytruebigmac/vibermm-frontend/security/policy
+    about: Please report security vulnerabilities here.

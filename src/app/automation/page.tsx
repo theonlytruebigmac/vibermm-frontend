@@ -4,7 +4,7 @@ import React, { useState, useRef } from "react";
 // Example data for scripts
 const scripts = [
 	{
-		name: "Syncro (Alerts) - Close An RMM Alert",
+		name: "Example Powershell 1",
 		type: "PowerShell",
 		category: "Alerts",
 		description:
@@ -13,7 +13,7 @@ const scripts = [
 		scheduledRuns: 0,
 	},
 	{
-		name: "Syncro (Alerts) - Open An RMM Alert",
+		name: "Example Powershell 2",
 		type: "PowerShell",
 		category: "Alerts",
 		description:
@@ -37,15 +37,15 @@ const categories = [
 
 function ScriptRowMenu({ onClose }: { onClose: () => void }) {
 	return (
-		<div className="absolute right-2 top-8 z-20 w-64 rounded-lg border border-neutral-800 bg-neutral-900 shadow-lg py-2 text-sm">
+		<div className="absolute right-2 top-8 z-20 w-64 rounded-lg border border-gray-700 bg-gray-800 shadow-lg py-2 text-sm">
 			<button
-				className="flex items-center w-full px-4 py-2 hover:bg-neutral-800 text-left"
+				className="flex items-center w-full px-4 py-2 hover:bg-gray-700 text-left"
 				onClick={onClose}
 			>
 				<span className="mr-2">✏️</span> Edit
 			</button>
 			<button
-				className="flex items-center w-full px-4 py-2 hover:bg-neutral-800 text-left"
+				className="flex items-center w-full px-4 py-2 hover:bg-gray-700 text-left"
 				onClick={onClose}
 			>
 				<span className="mr-2">📋</span> Clone
@@ -115,7 +115,7 @@ export default function AutomationPage() {
 								placeholder="Search 20 Scripts..."
 								value={search}
 								onChange={(e) => setSearch(e.target.value)}
-								className="px-3 py-1.5 rounded border border-neutral-800 bg-neutral-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-900 transition"
+								className="px-3 py-1.5 rounded border border-gray-700 bg-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-blue-900 transition"
 							/>
 							<button className="px-4 py-1.5 rounded bg-blue-600 text-white font-semibold hover:bg-blue-700 transition">
 								Search
@@ -124,7 +124,7 @@ export default function AutomationPage() {
 						<select
 							value={category}
 							onChange={(e) => setCategory(e.target.value)}
-							className="px-3 py-1.5 rounded border border-neutral-800 bg-neutral-900 text-sm focus:outline-none"
+							className="px-3 py-1.5 rounded border border-gray-700 bg-gray-700 text-sm focus:outline-none"
 						>
 							{categories.map((cat) => (
 								<option key={cat} value={cat}>
@@ -141,10 +141,10 @@ export default function AutomationPage() {
 					</div>
 				</div>
 
-				<div className="rounded-xl border border-neutral-800 bg-neutral-900 shadow-sm overflow-x-auto mx-auto min-h-[600px] w-full">
+				<div className="rounded-xl border border-gray-700 bg-gray-800 shadow-sm overflow-x-auto mx-auto min-h-[600px] w-full">
 					<table className="min-w-full divide-y divide-neutral-800">
 						<thead>
-							<tr className="bg-neutral-950">
+							<tr className="bg-gray-900">
 								<th className="px-4 py-3 text-left text-xs font-semibold text-neutral-300 uppercase tracking-wider">
 									<input type="checkbox" />
 								</th>
@@ -169,11 +169,11 @@ export default function AutomationPage() {
 								<th className="px-4 py-3"></th>
 							</tr>
 						</thead>
-						<tbody className="bg-neutral-900 divide-y divide-neutral-800">
+						<tbody className="bg-gray-800 divide-y divide-gray-700">
 							{filteredScripts.map((script, idx) => (
 								<tr
 									key={script.name}
-									className="hover:bg-neutral-800 cursor-pointer transition relative"
+									className="hover:bg-gray-700 cursor-pointer transition relative"
 									onClick={() => {
 										/* TODO: open script details or run modal */
 									}}

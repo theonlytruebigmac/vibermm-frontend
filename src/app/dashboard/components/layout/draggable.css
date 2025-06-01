@@ -1,0 +1,40 @@
+/* Add this to the body when dragging */
+body.widget-dragging {
+  cursor: grabbing !important;
+}
+
+/* Override the grid layout's drag handle style */
+.drag-handle {
+  cursor: grab !important;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.drag-handle:hover {
+  background-color: rgba(99, 102, 241, 0.1);
+}
+
+/* Make it more obvious that the widget header is draggable */
+.drag-handle svg {
+  transition: transform 0.2s ease;
+}
+
+.drag-handle:hover svg {
+  transform: scale(1.2);
+  color: rgba(99, 102, 241, 0.8) !important;
+}
+
+/* Ensure pointer events work correctly */
+.react-grid-item > .react-resizable-handle {
+  position: absolute;
+  pointer-events: auto !important;
+}
+
+/* Improve visual feedback during drag */
+.react-grid-item.react-draggable-dragging {
+  z-index: 3;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2) !important;
+}
