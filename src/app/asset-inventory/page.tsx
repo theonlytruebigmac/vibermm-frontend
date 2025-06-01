@@ -67,7 +67,7 @@ export default function AssetInventoryPage() {
             <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition shadow-sm">
               + Add Asset
             </button>
-            <button className="px-4 py-2 bg-neutral-800 text-white rounded-lg hover:bg-neutral-700 transition shadow-sm">
+            <button className="px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition shadow-sm">
               Export Assets
             </button>
           </div>
@@ -81,13 +81,13 @@ export default function AssetInventoryPage() {
               placeholder="Search assets by hostname or IP..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full px-4 py-2 rounded-lg border border-neutral-800 bg-neutral-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-900 transition"
+              className="w-full px-4 py-2 rounded-lg border border-gray-700 bg-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-blue-900 transition"
             />
           </div>
           <select
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
-            className="w-full md:w-48 px-4 py-2 rounded-lg border border-neutral-800 bg-neutral-900 text-sm focus:outline-none"
+            className="w-full md:w-48 px-4 py-2 rounded-lg border border-gray-700 bg-gray-700 text-sm focus:outline-none"
           >
             <option value="all">All Assets</option>
             <option value="online">Online</option>
@@ -96,37 +96,37 @@ export default function AssetInventoryPage() {
         </div>
 
         {/* Assets Table */}
-        <div className="rounded-xl border border-neutral-800 bg-neutral-900 shadow-sm overflow-x-auto">
-          <table className="min-w-full divide-y divide-neutral-800">
+        <div className="rounded-xl border border-gray-700 bg-gray-800 shadow-sm overflow-x-auto">
+          <table className="min-w-full divide-y divide-gray-700">
             <thead>
-              <tr className="bg-neutral-950">
-                <th className="px-6 py-3 text-left text-xs font-semibold text-neutral-300 uppercase tracking-wider">
+              <tr className="bg-gray-900">
+                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">
                   Hostname
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-neutral-300 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">
                   IP Address
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-neutral-300 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">
                   Operating System
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-neutral-300 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">
                   Hardware
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-neutral-300 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">
                   Software
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-neutral-300 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">
                   Last Seen
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-neutral-300 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">
                   Status
                 </th>
                 <th className="px-6 py-3"></th>
               </tr>
             </thead>
-            <tbody className="bg-neutral-900 divide-y divide-neutral-800">
+            <tbody className="bg-gray-800 divide-y divide-gray-700">
               {filteredAssets.map((asset) => (
-                <tr key={asset.id} className="hover:bg-neutral-800">
+                <tr key={asset.id} className="hover:bg-gray-700">
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                     {asset.hostname}
                   </td>
@@ -144,7 +144,7 @@ export default function AssetInventoryPage() {
                       {asset.software.map((sw, idx) => (
                         <span
                           key={idx}
-                          className="px-2 py-1 text-xs rounded-full bg-neutral-800 text-neutral-300"
+                          className="px-2 py-1 text-xs rounded-full bg-gray-700 text-gray-300"
                         >
                           {sw}
                         </span>
@@ -175,7 +175,7 @@ export default function AssetInventoryPage() {
             </tbody>
           </table>
           {filteredAssets.length === 0 && (
-            <div className="px-6 py-8 text-center text-neutral-400">
+            <div className="px-6 py-8 text-center text-gray-400">
               No assets found matching your search criteria.
             </div>
           )}

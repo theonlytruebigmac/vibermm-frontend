@@ -1,0 +1,110 @@
+.react-grid-item {
+  transition: all 200ms ease !important;
+  will-change: transform;
+  touch-action: none;
+  cursor: auto;
+}
+
+.react-grid-item.resizing {
+  opacity: 0.9;
+  z-index: 3;
+  will-change: transform, width, height;
+}
+
+.react-grid-item.react-draggable-dragging {
+  opacity: 0.8;
+  z-index: 3;
+  transition: none !important;
+  will-change: transform;
+  cursor: grabbing;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 5px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.react-grid-item.dropping {
+  transition: all 200ms ease !important;
+}
+
+.react-grid-item.react-grid-placeholder {
+  background: rgba(99, 102, 241, 0.1);
+  border: 2px dashed rgba(99, 102, 241, 0.4);
+  border-radius: 8px;
+  opacity: 0.8;
+  transition: all 200ms ease;
+  z-index: 2;
+  user-select: none;
+}
+
+.react-resizable-handle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  bottom: 0;
+  right: 0;
+  cursor: se-resize;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.react-grid-item:hover .react-resizable-handle {
+  opacity: 1;
+}
+
+.react-resizable-handle::after {
+  content: "";
+  position: absolute;
+  right: 3px;
+  bottom: 3px;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid rgba(99, 102, 241, 0.5);
+  border-bottom: 2px solid rgba(99, 102, 241, 0.5);
+}
+
+.react-resizable-handle {
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.react-grid-item:hover .react-resizable-handle {
+  opacity: 1;
+}
+
+.widget-enter {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.widget-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+.widget-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.widget-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+/* Enhanced drag handle styles */
+.drag-handle {
+  cursor: grab;
+  user-select: none;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.drag-handle:hover {
+  background-color: rgba(99, 102, 241, 0.1);
+}
+
+.react-draggable-dragging .drag-handle {
+  cursor: grabbing;
+  background-color: rgba(99, 102, 241, 0.2);
+}

@@ -49,10 +49,10 @@ export default function SettingsPage() {
 				<div className="flex flex-col md:flex-row gap-6">
 					{/* Settings Navigation */}
 					<div className="w-full md:w-64 flex-shrink-0">
-						<div className="rounded-xl border border-neutral-800 bg-neutral-900 overflow-hidden">
+						<div className="rounded-xl border border-gray-700 bg-gray-800 overflow-hidden">
 							{menu.map((section) => (
 								<div key={section.section}>
-									<div className="px-4 py-2 bg-neutral-950 text-sm font-medium text-neutral-400">
+									<div className="px-4 py-2 bg-gray-900 text-sm font-medium text-gray-400">
 										{section.section}
 									</div>
 									<div className="py-1">
@@ -63,7 +63,7 @@ export default function SettingsPage() {
 												className={`w-full px-4 py-2 text-sm text-left transition ${
 													selectedItem === item
 														? "bg-blue-600 text-white"
-														: "text-neutral-300 hover:bg-neutral-800"
+														: "text-gray-300 hover:bg-gray-700"
 												}`}
 											>
 												{item}
@@ -77,7 +77,7 @@ export default function SettingsPage() {
 
 					{/* Settings Content */}
 					<div className="flex-1">
-						<div className="rounded-xl border border-neutral-800 bg-neutral-900 p-6">
+						<div className="rounded-xl border border-gray-700 bg-gray-800 p-6">
 							{settingsContent[selectedItem]}
 						</div>
 					</div>

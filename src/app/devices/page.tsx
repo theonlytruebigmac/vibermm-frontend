@@ -78,13 +78,13 @@ export default function DevicesPage() {
                 placeholder="Search devices..."
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
-                className="w-full px-3 py-2 rounded border border-neutral-800 bg-neutral-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-900 transition"
+                className="w-full px-3 py-2 rounded border border-gray-700 bg-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-blue-900 transition"
               />
             </div>
             <select
               value={selectedDeviceType}
               onChange={e => setSelectedDeviceType(e.target.value)}
-              className="w-full md:w-auto px-3 py-2 rounded border border-neutral-800 bg-neutral-900 text-sm focus:outline-none"
+              className="w-full md:w-auto px-3 py-2 rounded border border-gray-700 bg-gray-700 text-sm focus:outline-none"
             >
               <option value="">All Types</option>
               <option value="workstation">Workstation</option>
@@ -96,7 +96,7 @@ export default function DevicesPage() {
             <select
               value={osFilter}
               onChange={e => setOsFilter(e.target.value)}
-              className="w-full md:w-auto px-3 py-2 rounded border border-neutral-800 bg-neutral-900 text-sm focus:outline-none"
+              className="w-full md:w-auto px-3 py-2 rounded border border-gray-700 bg-gray-700 text-sm focus:outline-none"
             >
               <option value="">All OS</option>
               <option value="Windows">Windows</option>
@@ -113,21 +113,21 @@ export default function DevicesPage() {
 
         {/* Summary cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-neutral-900 rounded-lg border border-neutral-800 p-6 flex flex-col items-center justify-center">
+          <div className="bg-gray-800 rounded-lg border border-gray-700 p-6 flex flex-col items-center justify-center">
             <div className="text-lg font-semibold text-center mb-2">Computers with Alerts</div>
             <div className="text-4xl font-bold text-blue-500 mb-2">0</div>
             <div className="w-48 h-48">
               <Doughnut data={alertsByComputerData} options={{ responsive: true, plugins: { legend: { position: 'bottom' as const } } }} />
             </div>
           </div>
-          <div className="bg-neutral-900 rounded-lg border border-neutral-800 p-6 flex flex-col items-center justify-center">
+          <div className="bg-gray-800 rounded-lg border border-gray-700 p-6 flex flex-col items-center justify-center">
             <div className="text-lg font-semibold text-center mb-2">Computers without AV</div>
             <div className="text-4xl font-bold text-blue-500 mb-2">0</div>
             <div className="w-48 h-48">
               <Doughnut data={alertsByComputerData} options={{ responsive: true, plugins: { legend: { position: 'bottom' as const } } }} />
             </div>
           </div>
-          <div className="bg-neutral-900 rounded-lg border border-neutral-800 p-6 flex flex-col items-center justify-center">
+          <div className="bg-gray-800 rounded-lg border border-gray-700 p-6 flex flex-col items-center justify-center">
             <div className="text-lg font-semibold text-center mb-2">Operating Systems</div>
             <div className="w-48 h-48">
               <Doughnut data={alertsByComputerData} options={{ responsive: true, plugins: { legend: { position: 'bottom' as const } } }} />
@@ -136,29 +136,29 @@ export default function DevicesPage() {
         </div>
 
         {/* Devices table */}
-        <div className="rounded-xl border border-neutral-800 bg-neutral-900 shadow-sm overflow-x-auto">
-          <table className="min-w-full divide-y divide-neutral-800">
+        <div className="rounded-xl border border-gray-700 bg-gray-800 shadow-sm overflow-x-auto">
+          <table className="min-w-full divide-y divide-gray-700">
             <thead>
-              <tr className="bg-neutral-950">
-                <th className="px-4 py-3 text-left text-xs font-semibold text-neutral-300 uppercase tracking-wider">Device</th>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-neutral-300 uppercase tracking-wider">Type</th>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-neutral-300 uppercase tracking-wider">Status</th>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-neutral-300 uppercase tracking-wider">OS</th>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-neutral-300 uppercase tracking-wider">IP Address</th>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-neutral-300 uppercase tracking-wider">Last Check-in</th>
+              <tr className="bg-gray-900">
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Device</th>
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Type</th>
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Status</th>
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">OS</th>
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">IP Address</th>
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Last Check-in</th>
                 <th className="px-4 py-3"></th>
               </tr>
             </thead>
-            <tbody className="bg-neutral-900 divide-y divide-neutral-800">
+            <tbody className="bg-gray-800 divide-y divide-gray-700">
               {filteredDevices.length === 0 ? (
-                <tr className="hover:bg-neutral-800">
+                <tr className="hover:bg-gray-700">
                   <td className="px-4 py-4" colSpan={7}>
-                    <div className="text-center text-neutral-400">No devices found</div>
+                    <div className="text-center text-gray-400">No devices found</div>
                   </td>
                 </tr>
               ) : (
                 filteredDevices.map((device) => (
-                  <tr key={device.id} className="hover:bg-neutral-800">
+                  <tr key={device.id} className="hover:bg-gray-700">
                     <td className="px-4 py-4">{device.name}</td>
                     <td className="px-4 py-4">{device.type || '—'}</td>
                     <td className="px-4 py-4">{device.remote}</td>
@@ -168,7 +168,7 @@ export default function DevicesPage() {
                     <td className="px-4 py-4 text-right">
                       <button
                         onClick={() => showToast("Device action", "info")}
-                        className="text-neutral-400 hover:text-white"
+                        className="text-gray-400 hover:text-white"
                       >
                         ⋮
                       </button>
@@ -217,7 +217,7 @@ export default function DevicesPage() {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-neutral-900 border border-neutral-800 shadow-xl rounded-2xl">
+              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-gray-800 border border-gray-700 shadow-xl rounded-2xl">
                 <Dialog.Title
                   as="h3"
                   className="text-lg font-medium leading-6"
@@ -225,7 +225,7 @@ export default function DevicesPage() {
                   Add New Device
                 </Dialog.Title>
                 <div className="mt-2">
-                  <p className="text-sm text-neutral-400">
+                  <p className="text-sm text-gray-400">
                     Please enter the details for the new device.
                   </p>
                 </div>
@@ -236,7 +236,7 @@ export default function DevicesPage() {
                   </label>
                   <input
                     type="text"
-                    className="mt-1 w-full px-3 py-2 rounded border border-neutral-800 bg-neutral-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-900 transition"
+                    className="mt-1 w-full px-3 py-2 rounded border border-gray-700 bg-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-blue-900 transition"
                     placeholder="Enter device name"
                   />
                 </div>
@@ -245,7 +245,7 @@ export default function DevicesPage() {
                   <label className="block text-sm font-medium">
                     Device Type
                   </label>
-                  <select className="mt-1 w-full px-3 py-2 rounded border border-neutral-800 bg-neutral-900 text-sm focus:outline-none">
+                  <select className="mt-1 w-full px-3 py-2 rounded border border-gray-700 bg-gray-700 text-sm focus:outline-none">
                     <option value="workstation">Workstation</option>
                     <option value="server">Server</option>
                     <option value="laptop">Laptop</option>
@@ -260,7 +260,7 @@ export default function DevicesPage() {
                   </label>
                   <input
                     type="text"
-                    className="mt-1 w-full px-3 py-2 rounded border border-neutral-800 bg-neutral-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-900 transition"
+                    className="mt-1 w-full px-3 py-2 rounded border border-gray-700 bg-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-blue-900 transition"
                     placeholder="Enter IP address"
                   />
                 </div>
@@ -268,7 +268,7 @@ export default function DevicesPage() {
                 <div className="mt-6 flex gap-4 justify-end">
                   <button
                     type="button"
-                    className="px-4 py-2 text-sm font-medium text-neutral-300 hover:text-white focus:outline-none"
+                    className="px-4 py-2 text-sm font-medium text-gray-300 hover:text-white focus:outline-none"
                     onClick={() => setIsModalOpen(false)}
                   >
                     Cancel

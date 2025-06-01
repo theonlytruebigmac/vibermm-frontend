@@ -5,6 +5,7 @@ export type Dataset = {
   borderColor?: string | string[];
   borderWidth?: number;
   fill?: boolean;
+  tension?: number;
   hoverOffset?: number;
 };
 
@@ -47,6 +48,13 @@ export type WidgetSettings = {
   refreshInterval?: number;
   displayMode?: 'compact' | 'detailed';
   columns?: string[];
+  isSettingsOpen?: boolean;
+  title?: string;
+  theme?: string;
+  dataSourceId?: string;
+  animation?: boolean;
+  viewportUpdate?: 'all' | 'visible' | 'manual';
+  settingsTab?: 'data-source' | 'appearance' | 'advanced';
 };
 
 export type WidgetType = 'line' | 'bar' | 'doughnut' | 'stats' | 'table';
