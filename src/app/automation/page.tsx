@@ -4,7 +4,7 @@ import React, { useState, useRef } from "react";
 // Example data for scripts
 const scripts = [
 	{
-		name: "Syncro (Alerts) - Close An RMM Alert",
+		name: "Example Powershell 1",
 		type: "PowerShell",
 		category: "Alerts",
 		description:
@@ -13,7 +13,7 @@ const scripts = [
 		scheduledRuns: 0,
 	},
 	{
-		name: "Syncro (Alerts) - Open An RMM Alert",
+		name: "Example Powershell 2",
 		type: "PowerShell",
 		category: "Alerts",
 		description:

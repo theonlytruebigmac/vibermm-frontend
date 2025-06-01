@@ -1,5 +1,4 @@
 "use client";
-import { useTheme } from "next-themes";
 import { Doughnut } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -9,7 +8,7 @@ import {
 } from "chart.js";
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { useToast } from "../toast-context";
+import { useToast } from "@/contexts/toast";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -24,76 +23,38 @@ const alertsByComputerData = {
   ],
 };
 
-const alertsByTypeData = {
-  labels: ["Other"],
-  datasets: [
-    {
-      data: [1],
-      backgroundColor: ["#fbbf24"],
-      borderWidth: 2,
-    },
-  ],
-};
-
 export default function DevicesPage() {
-  const { resolvedTheme } = useTheme();
-  const chartBorderColor = resolvedTheme === "dark" ? "#fff" : "#e5e7eb";
-  const [search, setSearch] = useState("");
-  const [filter, setFilter] = useState("devices");
   const { showToast } = useToast();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [osFilter, setOsFilter] = useState("");
   const [selectedDeviceType, setSelectedDeviceType] = useState<string>("");
 
-  // Bulk selection state
-  const [selectedRows, setSelectedRows] = useState<number[]>([]);
   // Example device data (should be replaced with real data)
   const devices = [
     {
       id: 1,
       name: "DESKTOP-FFHVSFD",
+      type: "workstation",
       remote: "—",
+      ip: "192.168.1.100",
+      lastCheckIn: "2025-06-01 10:30 AM",
       customer: "—",
-      osName: "—",
-      osArch: "—",
-      cpu: "—",
-      ram: "—",
-      hdd: "—",
+      osName: "Windows 11",
+      osArch: "x64",
+      cpu: "Intel i7-13700K",
+      ram: "32GB",
+      hdd: "1TB SSD",
     },
-    // Add more devices as needed
+    // This is example data, should be replaced with real data from the API
   ];
 
-  // Bulk select handlers
-  const allSelected = selectedRows.length === devices.length && devices.length > 0;
-  const toggleAll = () => setSelectedRows(allSelected ? [] : devices.map((d) => d.id));
-  const toggleRow = (id: number) => setSelectedRows((prev) => prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]);
-
-  // Bulk action example
-  const handleBulkDelete = () => {
-    showToast(`Deleted ${selectedRows.length} device(s)`, "success");
-    setSelectedRows([]);
-  };
-
-  // Advanced filtering state
-  const [sortBy, setSortBy] = useState<keyof typeof devices[0]>("name");
-  const [sortDir, setSortDir] = useState<"asc" | "desc">("asc");
-
-  // Filter and sort devices
   const filteredDevices = devices
     .filter((d) =>
-      (!search || d.name.toLowerCase().includes(search.toLowerCase())) &&
-      (!osFilter || d.osName === osFilter)
-    )
-    .sort((a, b) => {
-      if (a[sortBy] < b[sortBy]) return sortDir === "asc" ? -1 : 1;
-      if (a[sortBy] > b[sortBy]) return sortDir === "asc" ? 1 : -1;
-      return 0;
-    });
-
-  // Device details drawer state
-  const [drawerOpen, setDrawerOpen] = useState(false);
-  const [drawerDevice, setDrawerDevice] = useState<typeof devices[0] | null>(null);
+      (!searchQuery || d.name.toLowerCase().includes(searchQuery.toLowerCase())) &&
+      (!osFilter || d.osName === osFilter) &&
+      (!selectedDeviceType || d.type === selectedDeviceType)
+    );
 
   return (
     <div className="w-full h-full p-6 md:p-10">
@@ -102,7 +63,7 @@ export default function DevicesPage() {
           <h1 className="text-3xl font-bold">Devices</h1>
           <button
             onClick={() => setIsModalOpen(true)}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition shadow-sm"
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition shadow-sm flex items-center gap-2"
           >
             + Add Device
           </button>
@@ -142,7 +103,9 @@ export default function DevicesPage() {
               <option value="macOS">macOS</option>
               <option value="Linux">Linux</option>
             </select>
-            <button className="w-full md:w-auto px-5 py-2 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 transition shadow-sm whitespace-nowrap">
+            <button
+              className="w-full md:w-auto px-5 py-2 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 transition shadow-sm whitespace-nowrap flex items-center gap-2"
+            >
               Search
             </button>
           </div>
@@ -187,11 +150,32 @@ export default function DevicesPage() {
               </tr>
             </thead>
             <tbody className="bg-neutral-900 divide-y divide-neutral-800">
-              <tr className="hover:bg-neutral-800">
-                <td className="px-4 py-4" colSpan={7}>
-                  <div className="text-center text-neutral-400">No devices found</div>
-                </td>
-              </tr>
+              {filteredDevices.length === 0 ? (
+                <tr className="hover:bg-neutral-800">
+                  <td className="px-4 py-4" colSpan={7}>
+                    <div className="text-center text-neutral-400">No devices found</div>
+                  </td>
+                </tr>
+              ) : (
+                filteredDevices.map((device) => (
+                  <tr key={device.id} className="hover:bg-neutral-800">
+                    <td className="px-4 py-4">{device.name}</td>
+                    <td className="px-4 py-4">{device.type || '—'}</td>
+                    <td className="px-4 py-4">{device.remote}</td>
+                    <td className="px-4 py-4">{device.osName}</td>
+                    <td className="px-4 py-4">{device.ip || '—'}</td>
+                    <td className="px-4 py-4">{device.lastCheckIn || '—'}</td>
+                    <td className="px-4 py-4 text-right">
+                      <button
+                        onClick={() => showToast("Device action", "info")}
+                        className="text-neutral-400 hover:text-white"
+                      >
+                        ⋮
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
@@ -291,7 +275,7 @@ export default function DevicesPage() {
                   </button>
                   <button
                     type="button"
-                    className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none"
+                    className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none transition shadow-sm flex items-center gap-2"
                     onClick={() => {
                       showToast("Device added", "success");
                       setIsModalOpen(false);
