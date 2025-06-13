@@ -10,7 +10,6 @@ import {
   ClipboardDocumentListIcon,
   CommandLineIcon,
   Cog6ToothIcon,
-  CircleStackIcon,
   ArrowDownOnSquareIcon
 } from "@heroicons/react/24/outline";
 
@@ -22,9 +21,8 @@ interface NavLink {
 
 const navLinks: NavLink[] = [
   { href: "/dashboard", label: "Dashboard", icon: HomeIcon },
-  { href: "/devices", label: "Devices", icon: ComputerDesktopIcon },
+  { href: "/assets", label: "Assets", icon: ComputerDesktopIcon },
   { href: "/monitoring", label: "Monitoring", icon: BellAlertIcon },
-  { href: "/asset-inventory", label: "Asset Inventory", icon: CircleStackIcon },
   { href: "/patch-management", label: "Patch Management", icon: ArrowDownOnSquareIcon },
   { href: "/automation", label: "Automation", icon: CommandLineIcon },
   { href: "/reports", label: "Reports", icon: ClipboardDocumentListIcon },
