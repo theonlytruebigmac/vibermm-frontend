@@ -1,4 +1,4 @@
-export interface Device {
+export interface ManagedAsset {
   id: string;
   name: string;
   status: 'online' | 'offline' | 'maintenance';
@@ -13,7 +13,9 @@ export interface Device {
   };
 }
 
-export interface DeviceMetrics {
+export type Device = ManagedAsset;
+
+export interface AssetMetrics {
   cpu: {
     usage: number;
     temperature: number;
@@ -34,9 +36,11 @@ export interface DeviceMetrics {
   };
 }
 
+export type DeviceMetrics = AssetMetrics;
+
 export interface Alert {
   id: string;
-  deviceId: string;
+  assetId: string;
   severity: 'low' | 'medium' | 'high' | 'critical';
   type: string;
   message: string;
@@ -61,15 +65,15 @@ export interface AutomationRule {
   id: string;
   name: string;
   description?: string;
-  conditions: {
+  condition: {
     type: string;
-    operator: string;
-    value: string | number;
-  }[];
-  actions: {
+    value: string | number | boolean | Record<string, unknown>;
+  };
+  action: {
     type: string;
-    params: Record<string, string | number>;
-  }[];
+    value: string | number | boolean | Record<string, unknown>;
+  };
   enabled: boolean;
-  lastTriggered?: string;
+  createdAt: string;
+  lastRun?: string;
 }

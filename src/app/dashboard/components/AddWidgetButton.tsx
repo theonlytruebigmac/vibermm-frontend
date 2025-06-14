@@ -20,11 +20,11 @@ export function AddWidgetButton() {
 
   const handleAddWidget = (type: WidgetType) => {
     const widgetData: Record<WidgetType, ChartData> = {
-      line: defaultData.invoiceValue,
-      bar: defaultData.ticketDistribution,
-      doughnut: defaultData.ticketStatuses,
-      stats: defaultData.ticketsByDay,
-      table: defaultData.ticketDistribution,
+      line: defaultData.line,
+      bar: defaultData.bar, // Changed from defaultData.ticketDistribution
+      doughnut: defaultData.doughnut, // Changed from defaultData.ticketStatuses
+      stats: defaultData.stats, // Changed from defaultData.ticketsByDay
+      table: defaultData.table, // Changed from defaultData.ticketDistribution
     };
 
     addWidget({

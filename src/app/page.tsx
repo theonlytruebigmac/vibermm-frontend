@@ -5,7 +5,7 @@ export default function Home() {
         Welcome to VibeRMM
       </h1>
       <p className="text-lg md:text-2xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-        Modern, scalable Remote Monitoring & Management for MSPs and IT pros. Start by exploring the dashboard, managing devices, or automating your workflows.
+        Modern, scalable Remote Monitoring & Management for MSPs and IT pros. Start by exploring the dashboard, managing assets, or automating your workflows.
       </p>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl mt-8">
         <div className="rounded-xl bg-white dark:bg-gray-900 shadow p-6 flex flex-col items-center">
@@ -16,9 +16,9 @@ export default function Home() {
         </div>
         <div className="rounded-xl bg-white dark:bg-gray-900 shadow p-6 flex flex-col items-center">
           <span className="text-3xl mb-2">🖥️</span>
-          <div className="font-semibold text-lg mb-1">Devices</div>
+          <div className="font-semibold text-lg mb-1">Assets</div>
           <div className="text-gray-500 dark:text-gray-400 text-sm mb-2">Manage endpoints, monitor status, and deploy updates.</div>
-          <a href="#" className="text-primary font-medium hover:underline">View Devices</a>
+          <a href="#" className="text-primary font-medium hover:underline">View Assets</a>
         </div>
         <div className="rounded-xl bg-white dark:bg-gray-900 shadow p-6 flex flex-col items-center">
           <span className="text-3xl mb-2">⚡</span>
