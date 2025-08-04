@@ -93,7 +93,7 @@ export default function PatchManagementPage() {
                       setProfileToEdit(null);
                       setShowProfileForm(true);
                     }}
-                    className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring h-9 px-4 py-2 bg-primary text-primary-foreground shadow hover:bg-primary/90 bg-blue-600 hover:bg-blue-700"
+                    className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring h-9 px-4 py-2 bg-primary text-primary-foreground shadow hover:bg-primary/90 bg-[#23a69a] hover:bg-[#1c8c82]"
                   >
                     New Profile
                   </button>
@@ -129,7 +129,7 @@ export default function PatchManagementPage() {
                       setRuleToEdit(null);
                       setShowRuleForm(true);
                     }}
-                    className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring h-9 px-4 py-2 bg-primary text-primary-foreground shadow hover:bg-primary/90 bg-blue-600 hover:bg-blue-700"
+                    className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring h-9 px-4 py-2 bg-primary text-primary-foreground shadow hover:bg-primary/90 bg-[#23a69a] hover:bg-[#1c8c82]"
                   >
                     New Rule
                   </button>
@@ -183,7 +183,7 @@ function PatchStatusOverview() {
         <div className="flex items-center gap-4">
           <button 
             onClick={() => refreshPatchStatus()}
-            className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring h-9 px-4 py-2 bg-primary text-primary-foreground shadow hover:bg-primary/90 bg-blue-600 hover:bg-blue-700"
+            className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring h-9 px-4 py-2 bg-primary text-primary-foreground shadow hover:bg-primary/90 bg-[#23a69a] hover:bg-[#1c8c82]"
           >
             Run Assessment
           </button>

@@ -2,15 +2,20 @@
 import React from "react";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
 import { ToastProvider } from "@/contexts/toast";
+import { useAuth } from "@/contexts/auth";
 import {
-  HomeIcon,
+  BuildingOffice2Icon,
+  ExclamationCircleIcon,
+  CogIcon,
+  Squares2X2Icon,
+  ChartBarIcon,
+  KeyIcon,
   ComputerDesktopIcon,
-  BellAlertIcon,
-  ClipboardDocumentListIcon,
-  CommandLineIcon,
-  Cog6ToothIcon,
-  ArrowDownOnSquareIcon
+  ArrowPathIcon, // for Monitoring
+  DocumentDuplicateIcon // for Workflows
 } from "@heroicons/react/24/outline";
 
 interface NavLink {
@@ -20,18 +25,22 @@ interface NavLink {
 }
 
 const navLinks: NavLink[] = [
-  { href: "/dashboard", label: "Dashboard", icon: HomeIcon },
+  { href: "/dashboard", label: "Dashboards", icon: Squares2X2Icon },
+  { href: "/companies", label: "Companies", icon: BuildingOffice2Icon },
   { href: "/assets", label: "Assets", icon: ComputerDesktopIcon },
-  { href: "/monitoring", label: "Monitoring", icon: BellAlertIcon },
-  { href: "/patch-management", label: "Patch Management", icon: ArrowDownOnSquareIcon },
-  { href: "/automation", label: "Automation", icon: CommandLineIcon },
-  { href: "/reports", label: "Reports", icon: ClipboardDocumentListIcon },
-  { href: "/settings", label: "Settings", icon: Cog6ToothIcon },
+  { href: "/alerts", label: "Alerts", icon: ExclamationCircleIcon },
+  { href: "/monitoring", label: "Monitoring", icon: ArrowPathIcon }, // replaced HeartPulseIcon
+  { href: "/patching", label: "Patching", icon: CogIcon },
+  { href: "/workflows", label: "Workflows", icon: DocumentDuplicateIcon }, // replaced FlowIcon
+  { href: "/reporting", label: "Reporting", icon: ChartBarIcon },
+  { href: "/settings", label: "Settings", icon: KeyIcon },
 ];
 
 export function ClientLayout({ children }: { children: React.ReactNode }) {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { user, logout } = useAuth();
 
   return (
     <ToastProvider>
@@ -55,22 +64,77 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
               <ul className="py-4">
                 {navLinks.map((link) => {
                   const Icon = link.icon;
+                  const isActive = pathname === link.href;
+                  // You may want to add your <li> rendering here
                   return (
-                    <li key={link.href}>
-                      <a
+                    <li key={link.href} className={`mb-2 ${isActive ? "bg-gray-700" : ""}`}>
+                      <Link
                         href={link.href}
-                        className={`flex items-center px-4 py-2 text-gray-300 hover:bg-gray-900 hover:text-white transition-colors ${
-                          pathname === link.href ? "bg-gray-900 text-white" : ""
-                        } ${isSidebarCollapsed ? "justify-center p-0" : ""}`}
+                        className="flex items-center gap-3 px-4 py-2 rounded hover:bg-gray-700 transition-colors"
                       >
-                        <Icon className={`h-6 w-6${!isSidebarCollapsed ? " mr-3" : ""}`} />
-                        <span className={isSidebarCollapsed ? "hidden" : "block"}>{link.label}</span>
-                      </a>
+                        <Icon className="h-6 w-6 text-[#23a69a]" />
+                        {!isSidebarCollapsed && <span>{link.label}</span>}
+                      </Link>
                     </li>
                   );
                 })}
               </ul>
             </nav>
+
+            {/* User profile at bottom, styled like navigation items */}
+            <div className="mt-auto px-4 relative">
+              <button
+                onClick={() => setUserMenuOpen((open) => !open)}
+                className="w-full flex items-center gap-3 px-4 py-2 mb-2 rounded hover:bg-gray-700 transition-colors focus:outline-none"
+                aria-label="User menu"
+              >
+                {user?.email ? (
+                  <Image
+                    src={`https://www.gravatar.com/avatar/${user.email.trim().toLowerCase().split('').reduce((hash, c) => {
+                      hash = ((hash << 5) - hash) + c.charCodeAt(0);
+                      return hash & hash;
+                    }, 0)}?d=identicon`}
+                    alt="Profile"
+                    width={24}
+                    height={24}
+                    className="rounded-full"
+                  />
+                ) : (
+                  <Image
+                    src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=identicon"
+                    alt="Profile"
+                    width={24}
+                    height={24}
+                    className="rounded-full"
+                  />
+                )}
+                {!isSidebarCollapsed && (
+                  <span className="text-gray-300">{user?.email || "Zachery Frazier"}</span>
+                )}
+              </button>
+              {/* Popout user menu */}
+              {userMenuOpen && (
+                <div className="absolute left-full bottom-0 mb-4 ml-2 w-48 bg-gray-800 rounded shadow-lg z-50 flex flex-col py-2">
+                  <Link href="/settings" className="px-4 py-2 flex items-center gap-2 text-sm text-gray-300 hover:bg-gray-700 text-left">
+                    <CogIcon className="h-5 w-5" />
+                    <span>User Settings</span>
+                  </Link>
+                  <hr className="my-1 border-gray-700" />
+                  <button
+                    onClick={() => {
+                      setUserMenuOpen(false);
+                      logout();
+                    }}
+                    className="px-4 py-2 flex items-center gap-2 text-sm text-gray-300 hover:bg-gray-700 text-left"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                    </svg>
+                    <span>Log Out</span>
+                  </button>
+                </div>
+              )}
+            </div>
 
             {/* Collapse Button */}
             <button
@@ -96,22 +160,7 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
 
         {/* Main Content */}
         <div className="flex-1 flex flex-col min-h-0">
-          {/* Header */}
-          <header className="h-16 flex items-center justify-between px-4">
-            {/* Left side - empty or for breadcrumbs */}
-            <div></div>
-            
-            {/* Right side - user profile */}
-            <div className="flex items-center gap-4">
-              <div className="hidden md:flex flex-col items-end">
-                <span className="text-sm font-medium text-gray-200">John Doe</span>
-                <span className="text-xs text-gray-400">Administrator</span>
-              </div>
-              <div className="h-10 w-10 bg-gray-900 rounded-full flex items-center justify-center border-2 border-blue-500">
-                <span className="text-lg font-semibold text-gray-200">JD</span>
-              </div>
-            </div>
-          </header>
+          {/* Removed empty header to shift main content up */}
 
           {/* Main Content Area */}
           <main className="flex-1 overflow-y-auto">

@@ -407,7 +407,7 @@ function AssetDetailsModal({ asset, isOpen, onClose }: AssetDetailsModalProps) {
                   <div className="mt-6 flex justify-end">
                     <button
                       type="button"
-                      className="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                      className="rounded-md bg-[#23a69a] px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-[#1c8c82] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#23a69a]"
                       onClick={onClose}
                     >
                       Close

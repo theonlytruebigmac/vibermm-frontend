@@ -21,7 +21,7 @@ export default function RulesPage() {
 				<div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
 					<h1 className="text-3xl font-bold">Rules</h1>
 					<div className="flex flex-wrap gap-2 md:gap-4 items-center justify-start md:justify-end">
-						<button className="px-4 py-2 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 transition shadow-sm">
+						<button className="px-4 py-2 rounded-lg bg-[#23a69a] text-white font-semibold hover:bg-[#1c8c82] transition shadow-sm">
 							+ New Rule
 						</button>
 						<button className="px-4 py-2 rounded-lg bg-gray-700 text-white font-semibold hover:bg-gray-600 transition shadow-sm">

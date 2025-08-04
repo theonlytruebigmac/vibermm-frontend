@@ -117,7 +117,7 @@ export default function AutomationPage() {
 								onChange={(e) => setSearch(e.target.value)}
 								className="px-3 py-1.5 rounded border border-gray-700 bg-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-blue-900 transition"
 							/>
-							<button className="px-4 py-1.5 rounded bg-blue-600 text-white font-semibold hover:bg-blue-700 transition">
+							<button className="px-4 py-1.5 rounded bg-[#23a69a] text-white font-semibold hover:bg-[#1c8c82] transition">
 								Search
 							</button>
 						</div>
@@ -132,7 +132,7 @@ export default function AutomationPage() {
 								</option>
 							))}
 						</select>
-						<button className="px-4 py-1.5 rounded bg-blue-600 text-white font-semibold hover:bg-blue-700 transition">
+						<button className="px-4 py-1.5 rounded bg-[#23a69a] text-white font-semibold hover:bg-[#1c8c82] transition">
 							+ New Script
 						</button>
 						<button className="px-4 py-1.5 rounded bg-neutral-800 text-neutral-100 font-semibold hover:bg-neutral-700 transition">

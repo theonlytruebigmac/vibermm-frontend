@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { dashboardTemplates, DashboardTemplate } from '@/constants/dashboardTemplates';
 import { useDashboard } from '@/contexts/dashboard';
 import { IoGrid, IoClose } from 'react-icons/io5';
+import { Button } from '@/components/ui';
 
 export function TemplateSelector() {
   const [isOpen, setIsOpen] = useState(false);
@@ -57,24 +58,26 @@ export function TemplateSelector() {
   return (
     <>
       <div className="relative" ref={menuRef}>
-        <button
+        <Button
           onClick={() => setIsOpen(!isOpen)}
-          className="px-4 py-2 bg-gray-700 dark:bg-gray-700 text-white rounded-lg hover:bg-gray-600 dark:hover:bg-gray-600 transition shadow-sm flex items-center gap-2"
+          variant="secondary"
+          className="flex items-center gap-2"
         >
           <IoGrid className="w-5 h-5" />
           Templates
-        </button>
+        </Button>
 
         {isOpen && (
           <div className="absolute left-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-30">
             {dashboardTemplates.map((template) => (
-              <button
+              <Button
                 key={template.id}
                 onClick={() => openTemplateModal(template)}
-                className="w-full text-left px-4 py-2 hover:bg-blue-50 dark:hover:bg-blue-900 first:rounded-t-lg last:rounded-b-lg text-gray-700 dark:text-gray-200"
+                variant="ghost"
+                className="w-full justify-start"
               >
                 {template.name}
-              </button>
+              </Button>
             ))}
           </div>
         )}
@@ -88,12 +91,14 @@ export function TemplateSelector() {
               <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
                 {selectedTemplate.name} Template
               </h3>
-              <button 
+              <Button 
                 onClick={() => setTemplateModalOpen(false)}
-                className="p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700"
+                variant="ghost"
+                size="icon"
+                className="rounded-full"
               >
                 <IoClose className="w-6 h-6 text-gray-500" />
-              </button>
+              </Button>
             </div>
             
             <div className="p-6 overflow-y-auto max-h-[calc(90vh-10rem)]">
@@ -121,18 +126,17 @@ export function TemplateSelector() {
             </div>
             
             <div className="p-4 border-t border-gray-200 dark:border-gray-700 flex justify-end gap-3">
-              <button
+              <Button
                 onClick={() => setTemplateModalOpen(false)}
-                className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
+                variant="outline"
               >
                 Cancel
-              </button>
-              <button
+              </Button>
+              <Button
                 onClick={applyTemplate}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
               >
                 Apply Template
-              </button>
+              </Button>
             </div>
           </div>
         </div>

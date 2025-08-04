@@ -1,7 +1,25 @@
+"use client";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/contexts/auth";
+import Link from "next/link";
+
 export default function Home() {
+  const router = useRouter();
+  const { isAuthenticated, isLoading } = useAuth();
+
+  useEffect(() => {
+    if (!isLoading) {
+      // If authenticated, redirect to dashboard
+      if (isAuthenticated) {
+        router.replace("/dashboard");
+      }
+    }
+  }, [isAuthenticated, isLoading, router]);
+
   return (
     <section className="flex flex-col items-center justify-center min-h-[60vh] text-center gap-6">
-      <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight bg-gradient-to-r from-primary to-blue-500 text-transparent bg-clip-text">
+      <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight bg-gradient-to-r from-blue-400 to-[#23a69a] text-transparent bg-clip-text">
         Welcome to VibeRMM
       </h1>
       <p className="text-lg md:text-2xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
@@ -12,19 +30,19 @@ export default function Home() {
           <span className="text-3xl mb-2">📊</span>
           <div className="font-semibold text-lg mb-1">Dashboard</div>
           <div className="text-gray-500 dark:text-gray-400 text-sm mb-2">View real-time metrics, alerts, and system health at a glance.</div>
-          <a href="#" className="text-primary font-medium hover:underline">Open Dashboard</a>
+          <Link href="/dashboard" className="text-[#23a69a] font-medium hover:underline">Open Dashboard</Link>
         </div>
         <div className="rounded-xl bg-white dark:bg-gray-900 shadow p-6 flex flex-col items-center">
           <span className="text-3xl mb-2">🖥️</span>
           <div className="font-semibold text-lg mb-1">Assets</div>
           <div className="text-gray-500 dark:text-gray-400 text-sm mb-2">Manage endpoints, monitor status, and deploy updates.</div>
-          <a href="#" className="text-primary font-medium hover:underline">View Assets</a>
+          <Link href="/assets" className="text-[#23a69a] font-medium hover:underline">View Assets</Link>
         </div>
         <div className="rounded-xl bg-white dark:bg-gray-900 shadow p-6 flex flex-col items-center">
           <span className="text-3xl mb-2">⚡</span>
           <div className="font-semibold text-lg mb-1">Automation</div>
           <div className="text-gray-500 dark:text-gray-400 text-sm mb-2">Run scripts, schedule tasks, and automate remediation.</div>
-          <a href="#" className="text-primary font-medium hover:underline">Automate Now</a>
+          <Link href="/workflows" className="text-[#23a69a] font-medium hover:underline">Automate Now</Link>
         </div>
       </div>
     </section>

@@ -3,8 +3,12 @@ import React, { useState } from "react";
 
 const menu = [
 	{
+		section: "Account",
+		items: ["Profile", "Preferences"],
+	},
+	{
 		section: "General",
-		items: ["Preferences", "Branding", "Localization"],
+		items: ["Branding", "Localization"],
 	},
 	{
 		section: "Security",
@@ -21,6 +25,7 @@ const menu = [
 ];
 
 const settingsContent: Record<string, React.ReactNode> = {
+	Profile: <div>Redirecting to profile page...</div>, // This won't actually be shown due to redirection
 	Preferences: <div>Preferences settings content goes here.</div>,
 	Branding: <div>Branding settings content goes here.</div>,
 	Localization: <div>Localization settings content goes here.</div>,
@@ -36,7 +41,10 @@ const settingsContent: Record<string, React.ReactNode> = {
 	"Payment Methods": <div>Payment Methods content goes here.</div>,
 };
 
+import { useRouter } from "next/navigation";
+
 export default function SettingsPage() {
+	const router = useRouter();
 	const [selectedItem, setSelectedItem] = useState("Preferences");
 
 	return (
@@ -59,7 +67,13 @@ export default function SettingsPage() {
 										{section.items.map((item) => (
 											<button
 												key={item}
-												onClick={() => setSelectedItem(item)}
+												onClick={() => {
+													if (item === "Profile") {
+														router.push("/profile");
+													} else {
+														setSelectedItem(item);
+													}
+												}}
 												className={`w-full px-4 py-2 text-sm text-left transition ${
 													selectedItem === item
 														? "bg-blue-600 text-white"

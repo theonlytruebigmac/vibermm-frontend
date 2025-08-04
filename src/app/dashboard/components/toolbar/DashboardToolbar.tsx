@@ -6,6 +6,7 @@ import { AddWidgetButton } from './AddWidgetButton';
 import { TemplateSelector } from './TemplateSelector';
 import { useDashboard } from '@/contexts/dashboard';
 import { Layout } from 'react-grid-layout';
+import { Button } from '@/components/ui';
 
 const LAYOUT_PRESETS = {
   '2x2': { cols: 2 },
@@ -54,24 +55,26 @@ export function DashboardToolbar() {
         <TemplateSelector />
         
         <div className="relative">
-          <button
+          <Button
             onClick={() => setIsPresetsOpen(!isPresetsOpen)}
-            className="px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition flex items-center gap-2"
+            variant="outline"
+            className="flex items-center gap-2"
           >
             <IoGrid className="w-5 h-5" />
             <span>Layout Presets</span>
-          </button>
+          </Button>
 
           {isPresetsOpen && (
             <div className="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-2">
               {Object.entries(LAYOUT_PRESETS).map(([name]) => (
-                <button
+                <Button
                   key={name}
                   onClick={() => applyPreset(name as keyof typeof LAYOUT_PRESETS)}
-                  className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition"
+                  variant="ghost"
+                  className="w-full justify-start"
                 >
                   {name} Grid
-                </button>
+                </Button>
               ))}
             </div>
           )}
@@ -79,21 +82,23 @@ export function DashboardToolbar() {
       </div>
 
       <div className="flex items-center gap-2">
-        <button
+        <Button 
           onClick={handleSaveLayout}
-          className="px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition flex items-center gap-2"
+          variant="outline"
+          className="flex items-center gap-2"
         >
           <IoSave className="w-5 h-5" />
           <span>Save Layout</span>
-        </button>
+        </Button>
         
-        <button
+        <Button
           onClick={handleLoadLayout}
-          className="px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition flex items-center gap-2"
+          variant="outline" 
+          className="flex items-center gap-2"
         >
           <IoRefresh className="w-5 h-5" />
           <span>Load Layout</span>
-        </button>
+        </Button>
       </div>
     </div>
   );
