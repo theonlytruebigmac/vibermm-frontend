@@ -1,16 +1,12 @@
 @import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 /* Custom global styles for modern, clean look */
 html {
   min-height: 100%;
   scroll-behavior: smooth;
 }
 body {
-  @apply bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-200;
+  @apply bg-gray-900 text-gray-100 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-200;
   min-height: 100vh;
 }
 
@@ -25,4 +21,61 @@ body {
 }
 .dark ::-webkit-scrollbar-thumb {
   background: #374151;
+}
+
+/* Login page color scheme */
+.bg-login {
+  background-color: #595959;
+}
+
+.login-card {
+  background-color: #333;
+  border-radius: 8px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.15);
+  padding: 2rem;
+  max-width: 400px;
+  margin: auto;
+}
+
+.login-input {
+  background: #fff;
+  color: #222;
+  border: none;
+  border-radius: 2px;
+  padding: 0.5rem 0.75rem;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.login-btn {
+  background: #23a69a;
+  color: #fff;
+  border: none;
+  border-radius: 2px;
+  padding: 0.5rem 0;
+  width: 100%;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.login-divider {
+  border: none;
+  border-top: 1px solid #888;
+  margin: 1.5rem 0;
+}
+
+.login-label {
+  color: #23a69a;
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+  display: block;
+}
+
+.login-link {
+  color: #23a69a;
+  font-size: 0.85rem;
+  float: right;
+  text-decoration: underline;
+  cursor: pointer;
 }

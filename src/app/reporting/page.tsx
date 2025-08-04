@@ -1,3 +1,7 @@
+"use client";
+
+import { Button } from "@/components/ui";
+
 export default function ReportsPage() {
   return (
     <div className="w-full h-full p-6 md:p-10">
@@ -5,12 +9,12 @@ export default function ReportsPage() {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <h1 className="text-3xl font-bold">Reports</h1>
           <div className="flex flex-col md:flex-row gap-2 md:gap-4">
-            <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition shadow-sm">
+            <Button>
               + New Report
-            </button>
-            <button className="px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition shadow-sm">
+            </Button>
+            <Button variant="secondary">
               Export All
-            </button>
+            </Button>
           </div>
         </div>
 

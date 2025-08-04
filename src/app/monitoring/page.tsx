@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { Bar, Line, Doughnut } from "react-chartjs-2";
+import { Button } from "@/components/ui";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -77,12 +78,12 @@ export default function MonitoringPage() {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <h1 className="text-3xl font-bold">Monitoring</h1>
           <div className="flex flex-col md:flex-row gap-2 md:gap-4">
-            <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition shadow-sm">
+            <Button>
               + New Monitor
-            </button>
-            <button className="px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition shadow-sm">
+            </Button>
+            <Button variant="secondary">
               Export Report
-            </button>
+            </Button>
           </div>
         </div>
 
@@ -306,7 +307,7 @@ export default function MonitoringPage() {
                       {device.alerts}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm">
-                      <button className="text-blue-500 hover:text-blue-600">
+                      <button className="text-[#23a69a] hover:text-[#1c8c82]">
                         View Details
                       </button>
                     </td>

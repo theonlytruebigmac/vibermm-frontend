@@ -4,6 +4,7 @@ import { useState, useCallback, useEffect } from 'react';
 import { IoAdd } from 'react-icons/io5';
 import { useDashboard } from '@/contexts/dashboard';
 import { WidgetType } from '@/types';
+import { Button } from '@/components/ui';
 import { defaultWidgetData as defaultData } from '@/constants/dashboard';
 
 const WIDGET_TYPES: { type: WidgetType; label: string }[] = [
@@ -44,13 +45,13 @@ export function AddWidgetButton() {
 
   return (
     <div className="relative widget-menu">
-      <button
+      <Button
         onClick={() => setIsOpen(!isOpen)}
-        className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition shadow-sm flex items-center gap-2"
+        className="flex items-center gap-2"
       >
         <IoAdd className="w-5 h-5" />
         Add Widget
-      </button>
+      </Button>
 
       {isOpen && (
         <>
@@ -61,14 +62,15 @@ export function AddWidgetButton() {
             aria-orientation="vertical"
           >
             {WIDGET_TYPES.map(({ type, label }) => (
-              <button
+              <Button
                 key={type}
                 onClick={() => handleAddWidget(type)}
-                className="w-full text-left px-4 py-2 hover:bg-blue-50 dark:hover:bg-blue-900 first:rounded-t-lg last:rounded-b-lg text-gray-700 dark:text-gray-200"
+                variant="ghost"
+                className="w-full justify-start"
                 role="menuitem"
               >
                 {label}
-              </button>
+              </Button>
             ))}
           </div>
         </>
